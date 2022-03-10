@@ -296,11 +296,17 @@
 //     img.title = 'image2';
 // }
 
-let btn = document.getElementById('btn');
+// let btn = document.getElementById('btn');
 
-btn.onclick = function() {
-    let ipt = document.querySelector('input');
-    ipt.value = '被点击了';
-    // btn.disabled = true;
-    this.disabled = true;
-}
+// btn.onclick = function() {
+//     let ipt = document.querySelector('input');
+//     ipt.value = '被点击了';
+//     // btn.disabled = true;
+//     this.disabled = true;
+// }
+
+$(function () {
+    alert(11);
+    $('div').hide();
+})
+

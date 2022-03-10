@@ -38,7 +38,3 @@ function loadInfo(obj) {
         "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy), 800, 600);
 
 }
-
-function insertInfo(uesrInfo) {
-
-}

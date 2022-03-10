@@ -31,13 +31,39 @@ $(function () {
     let xb = getQueryString("xb");
     let sfjy = getQueryString("sfjy");
 
-    $("#pxhText").val(pxh);
-    $("#yhxmText").val(name);
-    $("#yhxmText").val(yhkl);
-    $("#yhbmText").val(yhbm);
-    $("#xbText").val(xb);
-    $("#sfjy").val(sfjy);
+    if (pxh != null) {
+        $("#pxhText").val(pxh);
+    }
 
+    if (name != null) {
+        $("#yhxmText").val(name);
+    }
+
+    if (yhkl != null) {
+        $("#yhklText").val(yhkl);
+        $("#cfklText").val(yhkl);
+    }
+
+    if (yhbm != null) {
+        $('#yhbm').hide();
+        $("#yhbm").parent().html(yhbm);
+    }
+
+    if (xb != null) {
+        $('#xb').hide();
+        $("#xb").parent().html(xb);
+    }
+
+    if (sfjy != null) {
+        alert(sfjy);
+        if (sfjy == '否') {
+            $('#sfjy').hide();
+            $('#sfjy').parent().html('否');
+        } else {
+            $('#sfjy').hide();
+            $('#sfjy').parent().html('是');
+        }
+    }
 })
 
 function getQueryString(name) {

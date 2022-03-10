@@ -3,12 +3,15 @@ td {
     height: 50px;
 }
 
-table{
+table {
     border-spacing: 0;
 }
 
-.input{
+.input {
     height: 30px;
+    width: 99%;
+    border: none;
+    outline: none;
 }
 
 select {
@@ -16,12 +19,12 @@ select {
     height: 40px;
 }
 
-#sfjy{
+#sfjy {
     height: 30px;
     width: 30px;
 }
 
-#date{
+#date {
     height: 40px;
     width: 95%;
 }

@@ -24,7 +24,7 @@
     </div>
 
     <div style="width:100%; height:100%;" align="left">
-        <table id="tableId" border="1" cellpadding="10" cellspacing="0" align="left" width="95%">
+        <table id="grid" border="1" cellpadding="10" cellspacing="0" align="left" width="95%">
             <thead style="background-color: aquamarine;">
                 <tr>
                     <td align="center">序号</td>
@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
+                    <td class="xh">1</td>
                     <td>李炅</td>
                     <td>123456</td>
                     <td>立案庭</td>
@@ -59,7 +59,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>2</td>
+                    <td class="xh">2</td>
                     <td>Anny</td>
                     <td>2Anny</td>
                     <td>业务庭</td>
@@ -67,7 +67,7 @@
                     <td>pxh</td>
                     <td>是</td>
                     <td>
-                        <img src="./查看.png" width="30" height="30" onclick="window.open('./t2.html')"
+                        <img src="./查看.png" width="30" height="30" onclick="loadInfo(this)"
                             style="cursor:pointer" /></td>
                     <td>
                         <img src="./删除.png" width="30" height="30" onclick="deleteInfo(this)" style="cursor:pointer" />
@@ -78,7 +78,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>3</td>
+                    <td class="xh">3</td>
                     <td>Pete</td>
                     <td>3Pete</td>
                     <td>办公室</td>
@@ -86,7 +86,7 @@
                     <td>pxh</td>
                     <td>否</td>
                     <td>
-                        <img src="./查看.png" width="30" height="30" onclick="window.open('./t2.html')"
+                        <img src="./查看.png" width="30" height="30" onclick="loadInfo(this)"
                             style="cursor:pointer" />
                     </td>
                     <td>
@@ -100,9 +100,7 @@
             </tbody>
         </table>
     </div>
-
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/t1.js"></script>
 </body>
-
 </html>
