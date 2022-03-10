@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>tdh</title>
+</head>
+
+<body>
+    <div style="width:100%; height:100%;" align="left">
+        用户姓名/用户id:
+        <input id="yhxm" class="yhxm" type="textarea" />
+
+        用户部门：
+        <select id="yhbm">
+            <option value="blank" selected></option>
+            <option value="lat">立案庭</option>
+            <option value="ywt">业务庭</option>
+            <option value="bgs">办公室</option>
+        </select>
+
+        <button id="search" onclick="showInfo()">查询</button>
+        <button id="add" onclick="jumpToInfoPage()">新增</button>
+    </div>
+
+    <div style="width:100%; height:100%;" align="left">
+        <table id="tableId" border="1" cellpadding="10" cellspacing="0" align="left" width="95%">
+            <thead style="background-color: aquamarine;">
+                <tr>
+                    <td align="center">序号</td>
+                    <td align="center">姓名</td>
+                    <td align="center">账户</td>
+                    <td align="center">部门</td>
+                    <td align="center">性别</td>
+                    <td align="center">排序号</td>
+                    <td align="center">是否禁用</td>
+                    <td align="center">查看</td>
+                    <td align="center">删除</td>
+                    <td align="center">修改</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>李炅</td>
+                    <td>123456</td>
+                    <td>立案庭</td>
+                    <td>男</td>
+                    <td>pxh</td>
+                    <td>否</td>
+                    <td>
+                        <img src="./查看.png" width="30" height="30" onclick="loadInfo(this)" style="cursor:pointer" />
+                    </td>
+                    <td>
+                        <img src="./删除.png" width="30" height="30" onclick="deleteInfo(this)" style="cursor:pointer" />
+                    </td>
+                    <td>
+                        <img src="./修改.png" width="30" height="30" onclick="jumpToInfoPage()" style="cursor:pointer" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Anny</td>
+                    <td>2Anny</td>
+                    <td>业务庭</td>
+                    <td>女</td>
+                    <td>pxh</td>
+                    <td>是</td>
+                    <td>
+                        <img src="./查看.png" width="30" height="30" onclick="window.open('./t2.html')"
+                            style="cursor:pointer" /></td>
+                    <td>
+                        <img src="./删除.png" width="30" height="30" onclick="deleteInfo(this)" style="cursor:pointer" />
+                    </td>
+                    <td>
+                        <img src="./修改.png" width="30" height="30" onclick="window.open('./t2.html')"
+                            style="cursor:pointer" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Pete</td>
+                    <td>3Pete</td>
+                    <td>办公室</td>
+                    <td>男</td>
+                    <td>pxh</td>
+                    <td>否</td>
+                    <td>
+                        <img src="./查看.png" width="30" height="30" onclick="window.open('./t2.html')"
+                            style="cursor:pointer" />
+                    </td>
+                    <td>
+                        <img src="./删除.png" width="30" height="30" onclick="deleteInfo(this)" style="cursor:pointer" />
+                    </td>
+                    <td>
+                        <img src="./修改.png" width="30" height="30" onclick="window.open('./t2.html')"
+                            style="cursor:pointer" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/t1.js"></script>
+</body>
+
+</html>
