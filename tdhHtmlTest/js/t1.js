@@ -32,9 +32,10 @@ function loadInfo(obj) {
     xb = obj.parentNode.parentNode.children[4].innerHTML;
     pxh = obj.parentNode.parentNode.children[5].innerHTML;
     sfjy = obj.parentNode.parentNode.children[6].innerHTML;
+    csrq = obj.parentNode.parentNode.children[7].innerHTML;
 
-    window.open("t2.html?pxh=" + pxh + "&name=" + encodeURIComponent(name) +
-        "&yhkl=" + encodeURIComponent(yhkl) + "&yhbm=" + encodeURIComponent(yhbm) +
-        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy), 800, 600);
+    window.open("t2.html?pxh=" + encodeURIComponent(pxh) + "&name=" + encodeURIComponent(name) +
+        "&xh=" + encodeURIComponent(xh) + "&yhkl=" + encodeURIComponent(yhkl) + "&yhbm=" + encodeURIComponent(yhbm) +
+        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq));
 
 }

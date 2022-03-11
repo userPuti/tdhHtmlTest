@@ -24,47 +24,54 @@ function validateForm() {
 }
 
 $(function () {
+    checkInfo();
+    $("#back").click(function () {
+        window.close();
+    });
+})
+
+
+function checkInfo() {
+    let xh = getQueryString("xh");
     let pxh = getQueryString("pxh");
     let name = getQueryString("name");
     let yhkl = getQueryString("yhkl");
     let yhbm = getQueryString("yhbm");
     let xb = getQueryString("xb");
     let sfjy = getQueryString("sfjy");
+    let csrq = getQueryString("csrq");
 
-    if (pxh != null) {
-        $("#pxhText").val(pxh);
+    if (xh == null || pxh == null || name == null || yhkl == null || yhbm == null || xb == null || sfjy == null || csrq == null) {
+        retun;
     }
 
-    if (name != null) {
-        $("#yhxmText").val(name);
+    $("#yhidText").parent().html(xh);
+
+    $("#pxhText").parent().html(pxh);
+    $("#yhxmText").parent().html(name);
+
+    $("#yhklText").parent().html(yhkl);
+    $("#cfklText").parent().html(yhkl);
+
+    $('#yhbm').hide();
+    $("#yhbm").parent().html(yhbm);
+
+    $('#xb').hide();
+    $("#xb").parent().html(xb);
+
+    if (sfjy == '否') {
+        $('#sfjy').hide();
+        $('#sfjy').parent().html('否');
+    } else {
+        $('#sfjy').hide();
+        $('#sfjy').parent().html('是');
     }
 
-    if (yhkl != null) {
-        $("#yhklText").val(yhkl);
-        $("#cfklText").val(yhkl);
-    }
+    $('#date').hide();
+    $("#date").parent().html(csrq);
 
-    if (yhbm != null) {
-        $('#yhbm').hide();
-        $("#yhbm").parent().html(yhbm);
-    }
-
-    if (xb != null) {
-        $('#xb').hide();
-        $("#xb").parent().html(xb);
-    }
-
-    if (sfjy != null) {
-        alert(sfjy);
-        if (sfjy == '否') {
-            $('#sfjy').hide();
-            $('#sfjy').parent().html('否');
-        } else {
-            $('#sfjy').hide();
-            $('#sfjy').parent().html('是');
-        }
-    }
-})
+    $('#submit').hide();
+}
 
 function getQueryString(name) {
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -73,4 +80,8 @@ function getQueryString(name) {
         return decodeURIComponent(r[2]);
     };
     return null;
+}
+
+function modifier() {
+    
 }
