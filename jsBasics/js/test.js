@@ -306,5 +306,11 @@
 // }
 
 $(() => {
-    $("#input").val('hello');
+    // $("#input").val('hello');
+    $("#btn").onclick = function() {
+        window.location.href="https://www.baidu.com";
+        // window.location.replace('https://www.baidu.com');
+        // window.location.assign('http://127.0.0.1:5501/jsBasics/test2.html');
+
+    }
 })

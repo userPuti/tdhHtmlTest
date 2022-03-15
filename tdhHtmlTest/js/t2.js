@@ -1,25 +1,30 @@
 $(function () {
     let type = getQueryString("type");
 
-    if (type == "search") {
-        checkInfo();
-    }
+    if (type != null && type != "") {
+        if (type == "search") {
+            checkInfo();
+        }
 
-    if (type == "modify") {
-        modifier();
+        if (type == "modify") {
+            modifier();
+        }
     }
 
     $("#submit").click(function () {
-        let flag = validateForm();
-        if (flag) {
-            addInfo();
+        let checked = validateForm();
+        if (checked) {
+            if (type == "modify") {
+                addInfo("modify");
+            } else if (type == "add") {
+                addInfo("add");
+            }
         }
     })
 
     $("#back").click(function () {
         window.close();
     });
-
 })
 
 
@@ -141,7 +146,7 @@ function modifier() {
     //     "&xb=" + encodeURIComponent(user.xb) + "&sfjy=" + encodeURIComponent(user.sfjy) + "&csrq=" + encodeURIComponent(user.csrq));
 }
 
-function addInfo() {
+function addInfo(type) {
     let xh = $("#yhidText").val();
     // console.log(xh);
     let pxh = $("#pxhText").val();
@@ -157,7 +162,8 @@ function addInfo() {
     console.log(csrq);
     window.open("t1.html?pxh=" + encodeURIComponent(pxh) + "&name=" + encodeURIComponent(name) +
         "&xh=" + encodeURIComponent(xh) + "&yhkl=" + encodeURIComponent(yhkl) + "&yhbm=" + encodeURIComponent(yhbm) +
-        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq));
+        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq) +
+        "&type=" + encodeURIComponent(type));
 }
 
 

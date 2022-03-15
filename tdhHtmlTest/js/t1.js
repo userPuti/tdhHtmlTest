@@ -1,8 +1,17 @@
 $(function () {
-    $("#add").click(function () {
+    let type = getQueryString("type");
+
+    if (type != null && type != "") {
+        if (type == "modify") {
+            modifyInfo();
+        } else if (type == "add") {
+            addLine();
+        }
+    }
+
+    $("add").click(function () {
         window.open("t2.html");
     })
-    addLine();
 })
 
 
@@ -25,12 +34,8 @@ function deleteInfo(obj) {
 }
 
 
-// function jumpToInfoPage() {
-//     window.open('t2.html');
-// }
-
-
 function loadInfo(obj, type) {
+    console.log("loadInfo running...");
     let tbody = document.getElementById("tableId");
     // let rows = tbody.rows;
     let xh = obj.parentNode.parentNode.children[0].innerHTML;
@@ -47,8 +52,8 @@ function loadInfo(obj, type) {
 
     window.open("t2.html?pxh=" + encodeURIComponent(pxh) + "&name=" + encodeURIComponent(name) +
         "&xh=" + encodeURIComponent(xh) + "&yhkl=" + encodeURIComponent(yhkl) + "&yhbm=" + encodeURIComponent(yhbm) +
-        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq) 
-        + "&type=" + encodeURIComponent(type));
+        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq) +
+        "&type=" + encodeURIComponent(type));
 }
 
 
@@ -86,7 +91,7 @@ function getUserInfo() {
 
 function addLine() {
     let user = getUserInfo();
-    console.log(getUserInfo());
+    // console.log(getUserInfo());
 
     if (user == null || user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
         return;
@@ -117,3 +122,27 @@ function addLine() {
     $("tbody tr:last").find("td").eq(10).html('<img src="./修改.png" width="30" height="30" onclick="window.open(\'./t2.html\')" style="cursor:pointer" />');
 }
 
+
+function modifyInfo() {
+    let user =  getUserInfo();
+
+    if (user == null || user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
+        return;
+    }
+
+    $("tbody tr").eq(user.xh-1).find("td").eq(1).html(user.name);
+    $("tbody tr").eq(user.xh-1).find("td").eq(2).html(user.yhkl);
+    $("tbody tr").eq(user.xh-1).find("td").eq(3).html(user.yhbm);
+    $("tbody tr").eq(user.xh-1).find("td").eq(4).html(user.xb);
+    $("tbody tr").eq(user.xh-1).find("td").eq(5).html(user.pxh);
+    if (user.sfjy == "on") {
+        $("tbody tr").eq(user.xh-1).find("td").eq(6).html("是");
+    } else {
+        $("tbody tr").eq(user.xh-1).find("td").eq(6).html("否");
+    }
+    $("tbody tr").eq(user.xh-1).find("td").eq(7).html(user.csrq);
+
+    $("tbody tr").eq(user.xh-1).find("td").eq(8).html('<img src="./查看.png" width="30" height="30" onclick="loadInfo(this,search)" style="cursor:pointer" />');
+    $("tbody tr").eq(user.xh-1).find("td").eq(9).html('<img src="./删除.png" width="30" height="30" onclick="deleteInfo(this)" style="cursor:pointer" />');
+    $("tbody tr").eq(user.xh-1).find("td").eq(10).html('<img src="./修改.png" width="30" height="30" onclick="window.open(\'./t2.html\')" style="cursor:pointer" />');
+}
