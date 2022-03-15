@@ -305,8 +305,6 @@
 //     this.disabled = true;
 // }
 
-$(function () {
-    alert(11);
-    $('div').hide();
+$(() => {
+    $("#input").val('hello');
 })
-

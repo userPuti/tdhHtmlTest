@@ -1,15 +1,25 @@
 $(function () {
-    //checkInfo();
-    // modifier();
-   
+    let type = getQueryString("type");
+
+    if (type == "search") {
+        checkInfo();
+    }
+
+    if (type == "modify") {
+        modifier();
+    }
+
+    $("#submit").click(function () {
+        let flag = validateForm();
+        if (flag) {
+            addInfo();
+        }
+    })
+
     $("#back").click(function () {
         window.close();
     });
-    
-    $("#submit").click(function () {
-        validateForm();
-        addInfo();
-    })
+
 })
 
 
@@ -22,6 +32,7 @@ function getUserInfo() {
     let xb = getQueryString("xb");
     let sfjy = getQueryString("sfjy");
     let csrq = getQueryString("csrq");
+    console.log(getQueryString("type"));
 
     return {
         xh: xh,
@@ -35,12 +46,13 @@ function getUserInfo() {
     }
 }
 
+
 function checkInfo() {
     let user = getUserInfo();
-    console.log(getUserInfo());
+    // console.log(getUserInfo());
 
-    if (user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
-        retun;
+    if (user == null || user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
+        return;
     }
 
     $("#yhidText").parent().html(user.xh);
@@ -71,6 +83,7 @@ function checkInfo() {
     $('#submit').hide();
 }
 
+
 function getQueryString(name) {
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     let r = window.location.search.substr(1).match(reg);
@@ -80,25 +93,52 @@ function getQueryString(name) {
     return null;
 }
 
+
 function modifier() {
     let user = getUserInfo();
     console.log(getUserInfo());
 
-    if (user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
-        retun;
+    if (user == null || user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
+        return;
     }
 
-    $("#yhidText").parent().html(user.xh);
+    $("#yhidText").val(user.xh);
+    $("#yhidText").attr("readonly", "readonly");
 
-    $("#pxhText").parent().val(user.pxh);
-    $("#yhxmText").parent().val(user.name);
+    $("#pxhText").val(user.pxh);
+    $("#yhxmText").val(user.name);
 
-    $("#yhklText").parent().val(user.yhkl);
-    $("#cfklText").parent().val(user.yhkl);
+    $("#yhklText").val(user.yhkl);
+    $("#cfklText").val(user.yhkl);
 
-    window.open("t1.html?pxh=" + encodeURIComponent(user.pxh) + "&name=" + encodeURIComponent(user.name) +
-        "&xh=" + encodeURIComponent(user.xh) + "&yhkl=" + encodeURIComponent(user.yhkl) + "&yhbm=" + encodeURIComponent(user.yhbm) +
-        "&xb=" + encodeURIComponent(user.xb) + "&sfjy=" + encodeURIComponent(user.sfjy) + "&csrq=" + encodeURIComponent(user.csrq));
+    if (user.yhbm == "立案庭") {
+        $("#yhbm option[value='lat']").attr("selected", true);
+    } else if (user.yhbm == "业务庭") {
+        $("#yhbm option[value='ywt']").attr("selected", true);
+    } else {
+        $("#yhbm option[value='bgs']").attr("selected", true);
+    }
+
+
+    if (user.xb == "男") {
+        $("#xb option[value='male']").attr("selected", true);
+    } else if (user.xb == "女") {
+        $("#xb option[value='female']").attr("selected", true);
+
+    }
+
+    let birth = new Date(user.csrq).format("yyyy-MM-dd");
+
+    $("#date").attr("value", birth);
+
+
+    if (user.sfjy == "是") {
+        $("#sfjy").attr("checked", "checked");
+    }
+
+    // window.open("t1.html?pxh=" + encodeURIComponent(user.pxh) + "&name=" + encodeURIComponent(user.name) +
+    //     "&xh=" + encodeURIComponent(user.xh) + "&yhkl=" + encodeURIComponent(user.yhkl) + "&yhbm=" + encodeURIComponent(user.yhbm) +
+    //     "&xb=" + encodeURIComponent(user.xb) + "&sfjy=" + encodeURIComponent(user.sfjy) + "&csrq=" + encodeURIComponent(user.csrq));
 }
 
 function addInfo() {
@@ -112,13 +152,14 @@ function addInfo() {
     let xb = $("#xb option:selected").text();
     let sfjy = $("input[type=checkbox]:checked").val();
     // console.log(sfjy);
-    let csrq =$("#date").val();
+    let csrq = $("#date").val();
 
     console.log(csrq);
     window.open("t1.html?pxh=" + encodeURIComponent(pxh) + "&name=" + encodeURIComponent(name) +
         "&xh=" + encodeURIComponent(xh) + "&yhkl=" + encodeURIComponent(yhkl) + "&yhbm=" + encodeURIComponent(yhbm) +
         "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq));
 }
+
 
 function validateForm() {
     // let yhid = document.getElementById("yhidText").value;
@@ -130,7 +171,7 @@ function validateForm() {
     // let cfkl = document.getElementById('cfklText').value;
     let cfkl = $("#cfklText").val();
 
-
+    console.log(1);
     if (yhid == null || yhid == "") {
         alert("id必须填写");
         return false;
@@ -147,4 +188,31 @@ function validateForm() {
         alert("重复口令必须填写");
         return false;
     }
+    if (yhkl != cfkl) {
+        alert("口令不一致");
+        return false;
+    }
+    console.log(2);
+    return true;
+}
+
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
 }

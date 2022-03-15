@@ -1,11 +1,8 @@
 $(function () {
     $("#add").click(function () {
-        console.log(1);
         window.open("t2.html");
-        console.log(2);
-        addLine();
-        console.log(3);
     })
+    addLine();
 })
 
 
@@ -28,12 +25,12 @@ function deleteInfo(obj) {
 }
 
 
-function jumpToInfoPage() {
-    window.open('t2.html');
-}
+// function jumpToInfoPage() {
+//     window.open('t2.html');
+// }
 
 
-function loadInfo(obj) {
+function loadInfo(obj, type) {
     let tbody = document.getElementById("tableId");
     // let rows = tbody.rows;
     let xh = obj.parentNode.parentNode.children[0].innerHTML;
@@ -50,7 +47,8 @@ function loadInfo(obj) {
 
     window.open("t2.html?pxh=" + encodeURIComponent(pxh) + "&name=" + encodeURIComponent(name) +
         "&xh=" + encodeURIComponent(xh) + "&yhkl=" + encodeURIComponent(yhkl) + "&yhbm=" + encodeURIComponent(yhbm) +
-        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq));
+        "&xb=" + encodeURIComponent(xb) + "&sfjy=" + encodeURIComponent(sfjy) + "&csrq=" + encodeURIComponent(csrq) 
+        + "&type=" + encodeURIComponent(type));
 }
 
 
@@ -90,8 +88,8 @@ function addLine() {
     let user = getUserInfo();
     console.log(getUserInfo());
 
-    if (user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
-        retun;
+    if (user == null || user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
+        return;
     }
 
     let line = $("#firstLine").clone();
@@ -100,23 +98,22 @@ function addLine() {
     let i = 1;
     $(".xh").each(function () {
         $(this).html(i++);
-    }) 
+    })
 
     $("tbody tr:last").find("td").eq(1).html(user.name);
     $("tbody tr:last").find("td").eq(2).html(user.yhkl);
     $("tbody tr:last").find("td").eq(3).html(user.yhbm);
     $("tbody tr:last").find("td").eq(4).html(user.xb);
     $("tbody tr:last").find("td").eq(5).html(user.pxh);
-    if(user.sfjy == "on") {
+    if (user.sfjy == "on") {
         $("tbody tr:last").find("td").eq(6).html("是");
     } else {
         $("tbody tr:last").find("td").eq(6).html("否");
     }
     $("tbody tr:last").find("td").eq(7).html(user.csrq);
 
-    $("tbody tr:last").find("td").eq(8).html('<img src="./查看.png" width="30" height="30" onclick="loadInfo(this)" style="cursor:pointer" />');
+    $("tbody tr:last").find("td").eq(8).html('<img src="./查看.png" width="30" height="30" onclick="loadInfo(this,search)" style="cursor:pointer" />');
     $("tbody tr:last").find("td").eq(9).html('<img src="./删除.png" width="30" height="30" onclick="deleteInfo(this)" style="cursor:pointer" />');
     $("tbody tr:last").find("td").eq(10).html('<img src="./修改.png" width="30" height="30" onclick="window.open(\'./t2.html\')" style="cursor:pointer" />');
-
-
 }
+
