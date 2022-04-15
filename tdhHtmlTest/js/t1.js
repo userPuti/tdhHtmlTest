@@ -9,8 +9,8 @@ $(function () {
         }
     }
 
-    $("add").click(function () {
-        window.open("t2.html");
+    $("#add").click(function () {
+        window.open("t2.html?type=add");
     })
 })
 
@@ -18,7 +18,6 @@ $(function () {
 function showInfo() {
     let yhxm = document.getElementById("yhxm").value;
     let index = document.getElementById('yhbm').selectedIndex;
-
     alert(encoderStr(yhxm) + "   " + encoderStr(yhbm[index].text));
 }
 

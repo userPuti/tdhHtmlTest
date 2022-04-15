@@ -13,10 +13,14 @@ $(function () {
 
     $("#submit").click(function () {
         let checked = validateForm();
+        console.log(checked);
+        console.log(type);
         if (checked) {
             if (type == "modify") {
+                console.log("modify");
                 addInfo("modify");
             } else if (type == "add") {
+                console.log("add");
                 addInfo("add");
             }
         }
@@ -54,7 +58,7 @@ function getUserInfo() {
 
 function checkInfo() {
     let user = getUserInfo();
-    // console.log(getUserInfo());
+    console.log(getUserInfo());
 
     if (user == null || user.xh == null || user.pxh == null || user.name == null || user.yhkl == null || user.yhbm == null || user.xb == null || user.sfjy == null || user.csrq == null) {
         return;

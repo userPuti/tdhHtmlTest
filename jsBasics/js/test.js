@@ -305,12 +305,28 @@
 //     this.disabled = true;
 // }
 
-$(() => {
-    // $("#input").val('hello');
-    $("#btn").onclick = function() {
-        window.location.href="https://www.baidu.com";
-        // window.location.replace('https://www.baidu.com');
-        // window.location.assign('http://127.0.0.1:5501/jsBasics/test2.html');
+// $(() => {
+//     // $("#input").val('hello');
+//     $("#btn").onclick = function() {
+//         window.location.href="https://www.baidu.com";
+//         // window.location.replace('https://www.baidu.com');
+//         // window.location.assign('http://127.0.0.1:5501/jsBasics/test2.html');
 
-    }
+//     }
+// })
+
+$(() => {
+    // $("form").submit(() => {
+    //     alert("false");
+    //     return false;
+    // })
+
+    //    $.cookie("user","lj");
+
+    $("#btn").click(() => {
+        alert(this);
+        alert($(this));
+        $(this).val("b");
+        // $(this).siblings("input").eq(0).val("111");
+    })
 })
